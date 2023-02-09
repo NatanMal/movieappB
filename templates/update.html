@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="super">
+    <div class="container">
+        <a href="{{ url_for('update_task') }}">ADD</a>
+        <a href="{{ url_for('update') }}">UPDATE</a>
+        <a href="{{ url_for('show') }}">SHOW</a>
+        
+    </div> 
+
+    <div  id="consule">
+        <div id="wrapper">
+            <div id="showtask">
+                    {% for task in tasks2%}
+                    <form action="" method="POST">
+                     <i> {{task.tid}} {{task.name}} {{task.description}} <input type="hidden" value="{{task.tid}}" name="id3" class="input_c">
+                    <input type="text" class="input_c" name="text">
+                    <input type="submit"  value="update" class="input_c"> </i> 
+                     </form> 
+                    {%endfor%}
+            </div>
+        </div>
+    </form>
+    </div>
+    </div>
+    
+</body>
+</html>
