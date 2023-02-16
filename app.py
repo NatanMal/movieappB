@@ -109,7 +109,7 @@ def login():
             session['username'] = request.form["name"]
             return "sessioin created"
         else:
-            return "not authorised "
+            return "not authorised"
 
 
 
@@ -117,8 +117,12 @@ def login():
 @app.route('/shows', methods =["GET","POST"])
 def shows():
     if request.method == "GET":
-        #so this guy basicaly will show just the movies that in the table with ratings   
-        return render_template("shows.html")
+        #so this guy basicaly will show just the movies that in the table with ratings 
+        movies_list = crud.rating()
+        top_movies = [result[0] for result in movies_list]
+        print(top_movies)
+        print(type(top_movies))
+        return render_template("shows.html", top_movies = top_movies)
 
 @app.route('/registration', methods =["GET","POST"])
 def registration():
@@ -127,8 +131,17 @@ def registration():
     if request.method == "POST":
         name = request.form["name"]
         password = request.form["password"]
-        crud.write("users", name, password)
+        movies_list = []
+        crud.write("users", name, password, movies_list)
         return render_template("login.html")
+    
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
+@app.route('/roadmap')
+def roadmap(): 
+    return render_template("roadmap.html")
 
 
 

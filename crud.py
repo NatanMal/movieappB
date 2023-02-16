@@ -12,8 +12,8 @@ def read(table = "users"):
 def select(column, table):
     return query_db(f"SELECT {column} FROM {table}")
 
-def write(table ,name, password):
-    return query_db (f"INSERT INTO {table}(name,password) VALUES ('{name}','{password}')")
+def write(table ,name, password,movies):
+    return query_db (f"INSERT INTO {table}(name,password,movies) VALUES ('{name}','{password}','{movies}')")
 
 def update( table, column, text, column2, user_n):
     query_db(f"UPDATE {table} SET {column} = '{text}' WHERE {column2} = '{user_n}'")
@@ -30,6 +30,11 @@ def show_something(column, name):
 
 def show_something2(column, table, column2, name):
     return query_db(f"SELECT {column} FROM {table} WHERE {column2} = '{name}' ")
+
+def rating():
+    return query_db(f"SELECT movie, rating FROM movies ORDER BY rating DESC")
+
+
 
 
 
